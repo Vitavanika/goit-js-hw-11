@@ -12,13 +12,14 @@ const form = document.querySelector('.form');
 function onSubmitForm(event) {
   event.preventDefault();
   clearGallery();
-  showLoader();
 
   const searchEl = form.elements['search-text'].value.trim();
   if (!searchEl) {
     showErrorMessage('Please enter a search query.');
+    form.elements['search-text'].value = '';
     return;
   }
+  showLoader();
 
   fetchImages(searchEl)
     .then(data => {
